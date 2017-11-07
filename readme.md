@@ -11,9 +11,11 @@ and ask to join it. If you're a project owner,
 you can approve or deny the person asking to join. 
 Finally, make sure you have login and logout links, too.
 
+## Installation Requirements
+See requirements.txt file
+
 ## Run Project from your terminal on your local server
 `python manage.py runserver`
 
-## Requirements
-See requirements.txt file
+
 

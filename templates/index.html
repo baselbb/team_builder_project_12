@@ -37,13 +37,15 @@
       </div>
     </div>
 
-    <div class="grid-70 grid-push-5">
+    <div class="grid-70 grid-pull-5">
       <table class="u-full-width circle--table">
         <thead>
           <tr>
             <th>Project Title</th>
-            <th class="circle--cell--right">Positions</th>
+              <th class="circle--cell--right">Positions</th>
               <th class="circle--cell--right">Requirements</th>
+              <th class="circle--cell--right">Skills</th>
+
 
           </tr>
         </thead>
@@ -63,6 +65,13 @@
                     </td>
                     <td>
                         {{ project.requirements }}
+                    </td>
+                    <td>
+                        {% for position in project.positions.all %}
+                            {% for skill in position.skills.all %}
+                                {{ skill }}
+                            {% endfor %}
+                            {% endfor %}
                     </td>
             </tr>
         {% endfor %}

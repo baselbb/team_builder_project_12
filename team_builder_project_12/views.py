@@ -42,9 +42,10 @@ class NeedView(generic.ListView):
 
     def filter(self, search_term, queryset):
         if search_term and search_term != 'All Needs':
-            queryset = queryset.filter(
+            queryset = Project.objects.filter(
                 Q(title__icontains=search_term) |
                 Q(description__icontains=search_term) |
-                Q(requirements__icontains=search_term)
+                Q(requirements__icontains=search_term) |
+                Q(positions__skills__name__icontains=search_term)
             )
         return queryset

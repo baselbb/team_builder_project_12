@@ -19,6 +19,7 @@ class ProjectCreateForm(forms.ModelForm):
     requirements = forms.CharField(
         widget=forms.Textarea(attrs={'placeholder': ''})
     )
+
     timeline = forms.CharField(
         widget=forms.Textarea(
             attrs={
@@ -42,6 +43,7 @@ class PositionCreateForm(forms.ModelForm):
             }
         )
     )
+
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
@@ -51,9 +53,16 @@ class PositionCreateForm(forms.ModelForm):
         )
     )
 
+    skills = forms.ModelMultipleChoiceField(
+        queryset=models.Skill.objects.all(),
+        widget=forms.CheckboxSelectMultiple(),
+        required=False,
+        help_text='Select one or more skill'
+    )
+
     class Meta:
         model = models.Position
-        fields = ('name', 'description')
+        fields = ('name', 'description', 'skills')
 
 
 PositionFormSet = forms.modelform_factory(
@@ -64,6 +73,6 @@ PositionFormSet = forms.modelform_factory(
 PositionInlineFormSet = forms.modelformset_factory(
     models.Position,
     form=PositionCreateForm,
-    fields=('name', 'description'),
+    fields=('name', 'description', 'skills'),
     extra=5,
 )

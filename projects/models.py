@@ -56,7 +56,7 @@ class Position(models.Model):
     project = models.ForeignKey(Project, default='', related_name='positions')
     name = models.CharField(max_length=140)
     description = models.TextField()
-    skill = models.ForeignKey(Skill, default='', null=True)
+    skills = models.ManyToManyField(Skill, default='')
     filled = models.BooleanField(default=False)
 
     def __str__(self):

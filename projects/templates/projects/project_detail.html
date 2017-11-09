@@ -35,7 +35,13 @@
             {% if positions %}
             {% for pos in positions %}
             <h3>{{pos.name}}</h3>
+                <h3>Description</h3>
               <p>{{pos.description}}</p>
+                <h3>Skills</h3>
+                {% for skill in pos.skills.all %}
+                <p>{{skill}}</p>
+                    {% endfor %}
+
               <a class="button button-primary" href="{% url 'projects:position_apply' pos.project.pk pos.pk %}">Apply</a>
               {% endfor %}
               {% else %}
@@ -67,7 +73,7 @@
       </div>
 
       <div class="circle--secondary--module">
-        <h3>Applicant Requirements</h3>
+        <h3>Project Requirements</h3>
         <p>{{project.requirements}}</p>
       </div>
 
